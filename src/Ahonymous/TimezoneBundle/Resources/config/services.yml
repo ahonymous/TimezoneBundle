@@ -1,0 +1,13 @@
+services:
+    http_client:
+        class: Guzzle\Http\Client
+        arguments:
+            - %ahonymous_timezone.url%
+    timezone:
+        class: Ahonymous\TimezoneBundle\Timezone\Timezone
+        arguments:
+            - %ahonymous_timezone.api_key%
+            - @http_client
+            - @yaml
+    yaml:
+        class: Ahonymous\TimezoneBundle\Storage\YamlStorage

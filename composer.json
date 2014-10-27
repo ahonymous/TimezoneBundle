@@ -1,0 +1,26 @@
+{
+    "name": "ahonymous/timezone-bundle",
+    "license": "MIT",
+    "description": "The Symfony2 bundle to Google Timezone API",
+    "authors": [
+        {
+            "name": "Alex Moshta",
+            "email": "ahonymous@gmail.com",
+            "homepage": "https://github.com/ahonymous/"
+        }
+    ],
+    "autoload": {
+        "psr-0": { "Ahonymous\\TimezoneBundle": "src/" }
+    },
+    "require": {
+        "php": ">=5.5",
+        "symfony/symfony": "2.5.*",
+        "guzzle/guzzle": "~3.9"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~4.3"
+    },
+    "config": {
+        "bin-dir": "bin"
+    }
+}
