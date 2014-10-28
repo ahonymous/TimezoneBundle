@@ -63,8 +63,12 @@ class Timezone
             return array_key_exists('timeZoneName', $timezone) ? $timezone['timeZoneName'] : $timezoneKey;
         }
 
-        $uri = "/maps/api/timezone/json?location=" . $this->getLocation($this->getDateTimeZone($timezoneKey)) . "&timestamp=" . time() . "&key=" . $this->apiKey;
-        $data = json_decode($this->http->get($uri)->send()->getBody(), true);
+        $data = self::getGoogleTimezoneData(
+            $this->http,
+            $this->getLocation($this->getDateTimeZone($timezoneKey)),
+            time(),
+            $this->apiKey
+        );
 
         if ($data['status'] == 'OK' || $data['status'] == 'ZERO_RESULTS') {
             $this->yaml->addRecord($timezoneKey, $data);
@@ -73,5 +77,19 @@ class Timezone
         } else {
             throw new \Exception("response status " . $data['status']);
         }
+    }
+
+    /**
+     * @param Client $client
+     * @param $location
+     * @param $timestamp
+     * @param $apiKey
+     * @return mixed
+     */
+    public static function getGoogleTimezoneData(Client $client, $location, $timestamp, $apiKey)
+    {
+        $uri = sprintf("/maps/api/timezone/json?location=%s&timestamp=%d&key=%s",$location, $timestamp, $apiKey);
+
+        return json_decode($client->get($uri)->send()->getBody(), true);
     }
 }
