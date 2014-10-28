@@ -53,14 +53,16 @@ class Timezone
         if ($timezone) {
             return array_key_exists('timeZoneName', $timezone) ? $timezone['timeZoneName'] : $timezoneKey;
         }
-        $data['location'] = $this->getDateTimeZone($timezoneKey)->getLocation();
+        $location = $this->getDateTimeZone($timezoneKey)->getLocation();
 
         $data = self::getGoogleTimezoneData(
             $this->http,
-            implode(',', array_intersect_key($data['location'], ['latitude' => 0, 'longitude' => 0])),
+            implode(',', array_intersect_key($location, ['latitude' => 0, 'longitude' => 0])),
             time(),
             $this->apiKey
         );
+
+        $data['location'] = $location;
 
         if ($data['status'] == 'OK' || $data['status'] == 'ZERO_RESULTS') {
             $this->yaml->addRecord($timezoneKey, $data);
