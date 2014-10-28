@@ -24,5 +24,8 @@ class AhonymousTimezoneExtension extends Extension
 
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.yml');
+
+        $container->setParameter('ahonymous_timezone.api_key', $config['api_key']);
+        $container->setParameter('ahonymous_timezone.url', $config['url']);
     }
 }
