@@ -15,7 +15,7 @@ class YamlStorage
     /**
      * @param string $yamlFile
      */
-    function __construct($yamlFile = __DIR__ . "/../Resources/data/timezones.yml")
+    public function __construct($yamlFile = __DIR__ . "/../Resources/data/timezones.yml")
     {
         $this->yamlFile = $yamlFile;
     }
@@ -31,7 +31,7 @@ class YamlStorage
     }
 
     /**
-     * @param array $yaml
+     * @param  array $yaml
      * @return int
      */
     public function setContent($yaml = [])

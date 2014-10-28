@@ -24,10 +24,10 @@ class Timezone
 
     /**
      * @param $apiKey
-     * @param Client $client
+     * @param Client      $client
      * @param YamlStorage $yaml
      */
-    function __construct($apiKey, Client $client, YamlStorage $yaml)
+    public function __construct($apiKey, Client $client, YamlStorage $yaml)
     {
         $this->apiKey = $apiKey;
         $this->http = $client;
@@ -44,7 +44,7 @@ class Timezone
     }
 
     /**
-     * @param \DateTimeZone $timeZone
+     * @param  \DateTimeZone $timeZone
      * @return string
      */
     public function getLocation(\DateTimeZone $timeZone)

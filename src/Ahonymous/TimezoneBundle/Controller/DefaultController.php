@@ -17,7 +17,6 @@ class DefaultController extends Controller
         var_dump($this->get('timezone')->getTimeZoneName('Europe/London'));
         exit;
 
-
         return new JsonResponse();
     }
 }
