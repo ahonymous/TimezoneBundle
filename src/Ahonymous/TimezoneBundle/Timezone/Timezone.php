@@ -44,15 +44,6 @@ class Timezone
     }
 
     /**
-     * @param  \DateTimeZone $timeZone
-     * @return string
-     */
-    public function getLocation(\DateTimeZone $timeZone)
-    {
-        return implode(',', array_intersect_key($timeZone->getLocation(), ['latitude' => 0, 'longitude' => 0]));
-    }
-
-    /**
      * @param $timezoneKey
      * @throws \Exception
      */
@@ -62,10 +53,11 @@ class Timezone
         if ($timezone) {
             return array_key_exists('timeZoneName', $timezone) ? $timezone['timeZoneName'] : $timezoneKey;
         }
+        $data['location'] = $this->getDateTimeZone($timezoneKey)->getLocation();
 
         $data = self::getGoogleTimezoneData(
             $this->http,
-            $this->getLocation($this->getDateTimeZone($timezoneKey)),
+            implode(',', array_intersect_key($data['location'], ['latitude' => 0, 'longitude' => 0])),
             time(),
             $this->apiKey
         );
