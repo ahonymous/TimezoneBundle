@@ -32,12 +32,13 @@ class YamlStorage
 
     /**
      * @param  array $yaml
+     * @param  int $inline
      * @return int
      */
-    public function setContent($yaml = [])
+    public function setContent($yaml = [], $inline = 1)
     {
         $dumper = new Dumper();
-        $yaml = $dumper->dump($yaml, 2);
+        $yaml = $dumper->dump($yaml, $inline);
 
         return file_put_contents($this->yamlFile, $yaml);
     }
