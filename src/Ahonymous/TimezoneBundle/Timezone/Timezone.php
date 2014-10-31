@@ -74,7 +74,7 @@ class Timezone
     }
 
     /**
-     * @param Client $client
+     * @param  Client $client
      * @param $location
      * @param $timestamp
      * @param $apiKey

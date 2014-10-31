@@ -32,7 +32,7 @@ class YamlStorage
 
     /**
      * @param  array $yaml
-     * @param  int $inline
+     * @param  int   $inline
      * @return int
      */
     public function setContent($yaml = [], $inline = 1)
